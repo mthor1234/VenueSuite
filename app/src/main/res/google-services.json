@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "510842598244",
+    "firebase_url": "https://venuesuite-bff1c.firebaseio.com",
+    "project_id": "venuesuite-bff1c",
+    "storage_bucket": "venuesuite-bff1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510842598244:android:8d474bec91d53381",
+        "android_client_info": {
+          "package_name": "async.crash.com.venuesuite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510842598244-th2p0nft0ru9hbpijlh6vida3lkc0t4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpmA_BspVOdAi8TSbVw-SXW2ecw5DiKVA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
