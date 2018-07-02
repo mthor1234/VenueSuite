@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainFragment extends Fragment {
 
     TextView textView;
-    Button btnDeleteUser,btnLogout;
+    Button btnLogout;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener  authStateListener;
 
@@ -36,10 +36,11 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        System.out.println("In MainFragment!");
+
+        View v = inflater.inflate(R.layout.fragment_main, container, true);
 
         textView = (TextView) v.findViewById(R.id.fragment_main_tv_start);
-        btnDeleteUser = (Button) v.findViewById(R.id.fragment_main_btn_delete);
         btnLogout = (Button) v.findViewById(R.id.fragment_main_btn_logout);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -56,28 +57,34 @@ public class MainFragment extends Fragment {
         };
 
         final FirebaseUser user = firebaseAuth.getCurrentUser();
-        textView.setText("Hi " + user.getDisplayName());
+        textView.setText("Hi " + user.getEmail());
 
-        btnDeleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(user != null){
-                    user.delete()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(getActivity().getApplicationContext(), "User Deleted!", Toast.LENGTH_SHORT).show();
-                                        //TODO: Make RegisterActivity class, layout, and add to Manifest
-                                        //TODO: Add NewPassActivity class to the manifest
-                                        startActivity(new Intent(getActivity().getApplicationContext(), RegisterActivity.class));
-                                        getActivity().finish();
-                                    }
-                                }
-                            });
-                }
-            }
-        });
+
+
+        //TODO: Use this bit of code for an option to delete a user on an admin page
+
+//        btnDeleteUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(user != null){
+//                    user.delete()
+//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if(task.isSuccessful()){
+//                                        Toast.makeText(getActivity().getApplicationContext(), "User Deleted!", Toast.LENGTH_SHORT).show();
+//                                        //TODO: Make RegisterActivity class, layout, and add to Manifest
+//                                        //TODO: Add NewPassActivity class to the manifest
+//                                        startActivity(new Intent(getActivity().getApplicationContext(), RegisterActivity.class));
+//                                        getActivity().finish();
+//                                    }else {
+//                                        Toast.makeText(getActivity().getApplicationContext(), "Error deleting user!", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            });
+//                }
+//            }
+//        });
 
         btnLogout.setOnClickListener(new View.OnClickListener(){
             @Override

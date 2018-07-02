@@ -74,15 +74,6 @@ public class LoginActivity extends AppCompatActivity
      */
     private UserLoginTask mAuthTask = null;
 
-
-
-    // UI references.
-//    private AutoCompleteTextView mEmailView;
-//    private EditText mPasswordView;
-//    private Button mEmailSignInButton;
-//    private View mProgressView;
-//    private View mLoginFormView;
-
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private Button mEmailSignInButton;
@@ -162,7 +153,8 @@ public class LoginActivity extends AppCompatActivity
 //        });
 
 
-        if(firebaseAuth.getCurrentUser()!=null){
+        if(firebaseAuth.getCurrentUser() != null){
+            System.out.println("User is already logged in");
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
 
@@ -267,11 +259,11 @@ public class LoginActivity extends AppCompatActivity
             Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
             startActivityForResult(signIntent,RC_SIGN_IN);
 
-        }
+            // Start the main Activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
-        // Start the main Activity
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        }
 
     }
 
@@ -283,7 +275,7 @@ public class LoginActivity extends AppCompatActivity
             if(result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
                 authWithGoogle(account);
-            };
+            }
         }
     }
 
@@ -314,44 +306,6 @@ public class LoginActivity extends AppCompatActivity
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-//        String email = mEmailView.getText().toString();
-//        String password = mPasswordView.getText().toString();
-//
-//
-//        if(mEmailView.length() == 0){
-//            Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT ).show();
-//            return;
-//        }
-//
-//        if(mPasswordView.length() == 0){
-//            Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT ).show();
-//            return;
-//        }
-//
-//        if(password.length() < 6){
-//            Toast.makeText(getApplicationContext(), "Password needs to be at least 6 characters", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if(task.isSuccessful()){
-//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                            finish();
-//                        }
-//                        else{
-//                            Toast.makeText(getApplicationContext(), "Something is wrong with either the email or password", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//
-//
-//        //LATER: For now calling this so I can move onto the next activity...
-//        // May need to code up a method to do a proper login with the new users credentials
-//        attemptLogin();
 
         startActivity(new Intent(getApplication(), RegisterActivity.class));
 

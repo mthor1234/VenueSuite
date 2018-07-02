@@ -15,16 +15,6 @@
         android:textAlignment="center" />
 
     <Button
-        android:id="@+id/fragment_main_btn_delete"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Delete User"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:background="@android:color/holo_blue_bright"/>
-    <Button
         android:id="@+id/fragment_main_btn_logout"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"

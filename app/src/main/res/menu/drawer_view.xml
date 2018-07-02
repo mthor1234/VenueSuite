@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_first_fragment"
+            android:icon="@drawable/ic_one"
+            android:title="Home"/>
+    <item
+        android:id="@+id/nav_second_fragment"
+        android:icon="@drawable/ic_two"
+        android:title="Security" />
+
+        <item
+        android:id="@+id/nav_third_fragment"
+        android:icon="@drawable/ic_three"
+        android:title="Schedule" />
+
+        <item
+        android:id="@+id/nav_fourth_fragment"
+        android:icon="@drawable/ic_three"
+        android:title="Calendar" />
+
+        <item
+        android:id="@+id/nav_fifth_fragment"
+        android:icon="@drawable/ic_three"
+        android:title="Guestlist" />
+
+        <item
+            android:id="@+id/nav_sixth_fragment"
+            android:icon="@drawable/ic_three"
+            android:title="Contacts" />
+    </group>
+
+    <item android:title="sub items">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/ic_one"
+                    android:title="sub item 1" />
+                <item
+                    android:icon="@drawable/ic_two"
+                    android:title="sub item 2" />
+            </group>
+        </menu>
+
+    </item>
+
+
+</menu>
+
