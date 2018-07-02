@@ -53,11 +53,14 @@ public class MainFragment extends Fragment {
                     startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
                     getActivity().finish();
                 }
+                else{
+                    textView.setText("Hi " + user.getEmail());
+                }
             }
         };
 
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-        textView.setText("Hi " + user.getEmail());
+//        final FirebaseUser user = firebaseAuth.getCurrentUser();
+//        textView.setText("Hi " + user.getEmail());
 
 
 

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "510842598244-44g7qqog74731armca5r232esdk5flhv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "async.crash.com.venuesuite",
+            "certificate_hash": "2d2f168cc0f3886d3f0ea6b2c54d3b7a0e6ebbbb"
+          }
+        },
+        {
           "client_id": "510842598244-th2p0nft0ru9hbpijlh6vida3lkc0t4m.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510842598244-th2p0nft0ru9hbpijlh6vida3lkc0t4m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

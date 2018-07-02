@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,9 +22,11 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText et_email, et_password;
+    EditText et_email, et_firstName, et_lastName, et_phoneNumber;
+    TextInputEditText et_password;
     Button btn_registerButton, btn_loginButton;
     FirebaseAuth firebaseAuth;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,9 +34,18 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.register_activity);
 
         et_email = (EditText) findViewById(R.id.register_activity_et_email);
-        et_password = (EditText) findViewById(R.id.register_activity_et_password);
+        et_password = (TextInputEditText) findViewById(R.id.register_activity_et_password);
+//        et_password = (EditText) findViewById(R.id.register_activity_et_password);
+
+        et_firstName = (EditText) findViewById(R.id.register_activity_et_firstname);
+
+
+        et_lastName = (EditText) findViewById(R.id.register_activity_et_lastname);
+        et_phoneNumber = (EditText) findViewById(R.id.register_activity_et_phone);
         btn_registerButton = (Button) findViewById(R.id.register_activity_btn_register);
         btn_loginButton = (Button) findViewById(R.id.register_activity_btn_login);
+
+        progressBar = (ProgressBar) findViewById(R.id.indeterminateBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -41,6 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = et_email.getText().toString();
                 String password = et_password.getText().toString();
+                String firstName = et_firstName.getText().toString();
+                String lastName = et_lastName.getText().toString();
+                String phone = et_phoneNumber.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(),"Please fill in the required fields",Toast.LENGTH_SHORT).show();
@@ -54,8 +70,23 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Password must be at least 6 characters",Toast.LENGTH_SHORT).show();
                 }
 
+//                CreateRequest request = new CreateRequest()
+//                        .setEmail(email)
+//                        .setEmailVerified(false)
+//                        .setPassword(password)
+//                        .setPhoneNumber(phone)
+//                        .setDisplayName(firstName + " " + lastName)
+//                        .setDisabled(false);
+//
+//                UserRecord userRecord = FirebaseAuth.getInstance().createUser(request);
+//                System.out.println("Successfully created new user: " + userRecord.getUid());
+
+
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
