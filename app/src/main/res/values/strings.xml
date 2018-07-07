@@ -23,6 +23,16 @@
     <string name="newpass_acitivty">New Password</string>
     <string name="main_activity">Logged In</string>
 
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone Number</string>
+    <string name="additional_reqs">Additional Information / Special Requests</string>
+    <string name="date">Date</string>
+    <string name="males"># of Males</string>
+    <string name="females"># of Females</string>
+
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="venue_suite">Venue Suite</string>

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  * Created by mitchthornton on 7/1/18.
  */
 
-public class FirstFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class FirstFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_schedule, container, true);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
-

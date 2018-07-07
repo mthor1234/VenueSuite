@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by mitchthornton on 6/29/18.
  */
 
+//TODO: Make phone number optional field
+//TODO: Make the required fields
+
 public class RegisterActivity extends AppCompatActivity {
     EditText et_email, et_firstName, et_lastName, et_phoneNumber;
     TextInputEditText et_password;

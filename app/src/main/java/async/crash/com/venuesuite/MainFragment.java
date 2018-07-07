@@ -93,6 +93,10 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
+                // TODO: Error when clicking around on the 'Security' fragment. It prompted pressing the 'logout' button which appears on the main fragment
+                // This means that Mainfragment is still accessible even though 'Security' fragment overlays it
+                //java.lang.NullPointerException: Attempt to invoke virtual method 'android.content.Context android.support.v4.app.FragmentActivity.getApplicationContext()' on a null object reference
+
                 startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
                 getActivity().finish();
             }

@@ -19,6 +19,9 @@ import android.view.MenuItem;
  * Created by mitchthornton on 6/26/18.
  */
 
+//TODO: Fragments are overlaying the activity but the user can still select buttons from the SingleFragmentActivity
+    // Probably has something to do with setting attachtoroot=true in the FM
+
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawer;
@@ -33,7 +36,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
 
     protected int getLayoutResId() {
-        return R.layout.activity_fragment;
+        return R.layout.fragment_activity;
     }
 
     @Override
@@ -107,16 +110,26 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         switch (menuItem.getItemId()) {
             case R.id.nav_first_fragment:
-                fragmentClass = FirstFragment.class;
+                fragmentClass = MainFragment.class;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = SecondFragment.class;
+                fragmentClass = SecurityFragment.class;
+
                 break;
             case R.id.nav_third_fragment:
-                fragmentClass = ThirdFragment.class;
+                fragmentClass = ScheduleFragment.class;
+                break;
+            case R.id.nav_fourth_fragment:
+                fragmentClass = CalendarFragment.class;
+                break;
+                case R.id.nav_fifth_fragment:
+                fragmentClass = GuestListFragment.class;
+                break;
+                case R.id.nav_sixth_fragment:
+                fragmentClass = ContactsFragment.class;
                 break;
             default:
-                fragmentClass = FirstFragment.class;
+                fragmentClass = MainFragment.class;
         }
 
         try {

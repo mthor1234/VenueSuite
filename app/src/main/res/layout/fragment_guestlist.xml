@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground">
+
+
+
+
+    <EditText
+        android:id="@+id/fragment_guestlist_et_firstname"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:layout_marginTop="55dp"
+        android:hint="@string/first_name"/>
+
+    <EditText
+        android:id="@+id/fragment_guestlist_et_lastname"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_et_firstname"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_firstname"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_firstname"
+        android:layout_marginTop="15dp"
+        android:hint="@string/last_name"/>
+
+
+    <EditText
+        android:id="@+id/fragment_guestlist_et_phone"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_et_lastname"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_lastname"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_lastname"
+        android:layout_marginTop="15dp"
+        android:hint="@string/phone"/>
+
+
+    <EditText
+        android:id="@+id/fragment_guestlist_et_email"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_et_phone"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_phone"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_phone"
+        android:layout_marginTop="15dp"
+        android:hint="@string/email"/>
+    
+    <TextView
+        android:id="@+id/fragment_contacts_tv_spinnerlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="# of Guests"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_email"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_et_email"
+        android:layout_marginTop="15dp"/>
+
+    <Spinner
+        android:id="@+id/fragment_guestlist_spinner_guests"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_et_email"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_email"
+        app:layout_constraintLeft_toRightOf="@id/fragment_contacts_tv_spinnerlabel"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_email"
+        android:layout_marginTop="15dp"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/fragment_guestlist_tv_males"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/males"-->
+        <!--android:labelFor="@id/fragment_guestlist_et_males"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_et_email"-->
+        <!--app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_email"-->
+        <!--android:layout_marginTop="15dp" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/fragment_guestlist_et_males"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_tv_males"-->
+        <!--app:layout_constraintStart_toStartOf="@id/fragment_guestlist_tv_males"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_tv_males"-->
+        <!--android:inputType="number"-->
+        <!--android:layout_marginTop="15dp" />-->
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/fragment_guestlist_tv_females"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/females"-->
+        <!--android:labelFor="@id/fragment_guestlist_et_females"-->
+        <!--app:layout_constraintTop_toTopOf="@id/fragment_guestlist_tv_males"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/fragment_guestlist_tv_males"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/fragment_guestlist_tv_males" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/fragment_guestlist_et_females"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_tv_females"-->
+        <!--app:layout_constraintStart_toStartOf="@id/fragment_guestlist_tv_females"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_tv_females"-->
+        <!--android:inputType="number"-->
+        <!--android:layout_marginTop="15dp" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/fragment_guestlist_tv_other"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="# of Other"-->
+        <!--app:layout_constraintTop_toTopOf="@id/fragment_guestlist_tv_males"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/fragment_guestlist_tv_males"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/fragment_guestlist_tv_females"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_email"-->
+        <!--android:layout_marginLeft="25dp" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/fragment_guestlist_et_other"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_tv_other"-->
+        <!--app:layout_constraintStart_toStartOf="@id/fragment_guestlist_tv_other"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_tv_other"-->
+        <!--android:inputType="number"-->
+        <!--android:layout_marginTop="15dp" />-->
+
+    <Button
+        android:id="@+id/fragment_guestlist_btn_datepicker"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_spinner_guests"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:layout_marginTop="35dp" />
+
+    <EditText
+        android:id="@+id/fragment_guestlist_et_additionalreqs"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:lines="2"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_email"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_email"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_btn_datepicker"
+        android:layout_marginTop="15dp"
+        android:hint="@string/additional_reqs"/>
+
+    <Button
+        android:id="@+id/fragment_guestlist_btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_et_additionalreqs"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_et_additionalreqs" />
+
+
+</android.support.constraint.ConstraintLayout>
