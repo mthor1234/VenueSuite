@@ -20,22 +20,22 @@ import java.util.ArrayList;
 
 public class ContactsFragment extends Fragment {
 
-    ArrayList<DataModel> dataModels;
+    ArrayList<User> mUsers;
     ListView listView;
-    private static CustomAdapter adapter;
+    private static ContactsCustomAdapter adapter;
 
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dataModels = new ArrayList<DataModel>();
+        mUsers = new ArrayList<User>();
 
-        dataModels.add(new DataModel("MJ Thornton", "860 878 5445", "Busser"));
-        dataModels.add(new DataModel("MJ Test", "860 878 5445", "Busser"));
-        dataModels.add(new DataModel("MJ TESTING", "860 878 5445", "Busser"));
-        dataModels.add(new DataModel("MJ YEAH", "860 878 5445", "Busser"));
-        dataModels.add(new DataModel("MJ RUSS", "860 878 5445", "Busser"));
+        mUsers.add(new User("MJ Thornton", "860 878 5445", "Busser"));
+        mUsers.add(new User("MJ Test", "860 878 5445", "Busser"));
+        mUsers.add(new User("MJ TESTING", "860 878 5445", "Busser"));
+        mUsers.add(new User("MJ YEAH", "860 878 5445", "Busser"));
+        mUsers.add(new User("MJ RUSS", "860 878 5445", "Busser"));
 
     }
 
@@ -46,16 +46,16 @@ public class ContactsFragment extends Fragment {
 
         listView = (ListView) v.findViewById(R.id.fragment_contacts_lv);
 
-        adapter= new CustomAdapter(dataModels, getActivity().getApplicationContext());
+        adapter= new ContactsCustomAdapter(mUsers, getActivity().getApplicationContext());
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                DataModel dataModel= dataModels.get(position);
+                User user = mUsers.get(position);
 
-                final Snackbar snackbar = Snackbar.make(view, dataModel.getName(), Snackbar.LENGTH_LONG);
+                final Snackbar snackbar = Snackbar.make(view, user.getName(), Snackbar.LENGTH_LONG);
                 snackbar.setAction("Text or call",  new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

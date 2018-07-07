@@ -20,10 +20,10 @@ import java.util.ArrayList;
  * Created by mitchthornton on 7/3/18.
  */
 
-public class CustomAdapter extends ArrayAdapter<DataModel> implements
+public class ContactsCustomAdapter extends ArrayAdapter<User> implements
         View.OnClickListener{
 
-    private ArrayList<DataModel> dataSet;
+    private ArrayList<User> dataSet;
     Context mContext;
     private int lastPosition = -1;
 
@@ -33,7 +33,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements
         ImageView iv_profilePic;
     }
 
-    public CustomAdapter(ArrayList<DataModel> data, Context context){
+    public ContactsCustomAdapter(ArrayList<User> data, Context context){
         super(context, R.layout.row_item, data);
         this.dataSet = data;
         this.mContext = context;
@@ -45,11 +45,11 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements
 
         int position = (Integer)v.getTag();
         Object object = getItem(position);
-        DataModel dataModel = (DataModel) object;
+        User user = (User) object;
 
-        if(dataModel.getPhoneNumber().length() > 6) {
+        if(user.getPhoneNumber().length() > 6) {
 
-            final Snackbar snackbar = Snackbar.make(v, dataModel.getName(), Snackbar.LENGTH_LONG);
+            final Snackbar snackbar = Snackbar.make(v, user.getName(), Snackbar.LENGTH_LONG);
                 snackbar.setAction("Text or call",  new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -82,7 +82,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // Get data item for this position
-        DataModel dataModel = getItem(position);
+        User user = getItem(position);
 
         // Check if an existing view is being reuse it, otherwise inflate it
 
@@ -95,6 +95,7 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.row_item, parent, false);
+
             viewHolder.tv_contactName = (TextView) convertView.findViewById(R.id.row_item_tv_name);
             viewHolder.tv_jobRole = (TextView) convertView.findViewById(R.id.row_item_tv_role);
 
@@ -105,15 +106,14 @@ public class CustomAdapter extends ArrayAdapter<DataModel> implements
             result.startAnimation(animation);
             lastPosition = position;
 
-            viewHolder.tv_contactName.setText(dataModel.getName());
-            viewHolder.tv_jobRole.setText(dataModel.getJobRole());
+            viewHolder.tv_contactName.setText(user.getName());
+            viewHolder.tv_jobRole.setText(user.getJobRole());
 //            viewHolder.info.setOnClickListener(this);
 //            viewHolder.info.setTag(position);
             // Return the completed view to render on screen
             return convertView;
 
         }
-
         return super.getView(position, convertView, parent);
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <SearchView
+        android:id="@+id/fragment_guestlist_view_searchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/fragment_guestlist_view_tv_totalcount_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Count:"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_view_searchview"
+        app:layout_constraintStart_toStartOf="@id/fragment_guestlist_view_searchview"/>
+
+    <TextView
+        android:id="@+id/fragment_guestlist_view_tv_totalcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="137"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_view_searchview"
+        app:layout_constraintStart_toEndOf="@id/fragment_guestlist_view_tv_totalcount_label"
+        app:layout_constraintTop_toTopOf="@id/fragment_guestlist_view_tv_totalcount_label"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/date"
+        app:layout_constraintEnd_toEndOf="@id/fragment_guestlist_view_searchview"
+        app:layout_constraintTop_toBottomOf="@id/fragment_guestlist_view_searchview" />
+
+
+    <ListView
+        android:id="@+id/fragment_guestlist_view_lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+</android.support.constraint.ConstraintLayout>

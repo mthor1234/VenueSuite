@@ -8,21 +8,21 @@ import android.widget.ImageView;
  * Holds the data for the contact list
  */
 
-public class DataModel {
+public class User {
 
     private String name;
     private String phoneNumber;
     private String jobRole;
     private Image profile_Image;
 
-    public DataModel(String name, String phoneNumber, String jobRole, Image profile_Image) {
+    public User(String name, String phoneNumber, String jobRole, Image profile_Image) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.jobRole = jobRole;
         this.profile_Image = profile_Image;
     }
 
-    public DataModel(String name, String phoneNumber, String jobRole) {
+    public User(String name, String phoneNumber, String jobRole) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.jobRole = jobRole;

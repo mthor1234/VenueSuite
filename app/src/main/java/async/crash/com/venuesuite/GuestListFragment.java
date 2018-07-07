@@ -44,6 +44,7 @@ import static android.content.ContentValues.TAG;
     // Textview to the selected date
     // TODO: Should make the main screen for guestlist to see all of the added guests AKA the actual guestlist,
     // Then add a Floating Action Bar to add people to the guestlist
+    //TODO: Have an added by field, so it can be tracked by which employee added
 
 public class GuestListFragment extends Fragment implements MyContract {
 
@@ -54,6 +55,8 @@ public class GuestListFragment extends Fragment implements MyContract {
     private static int REQUEST_CODE = 0;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+
+    private String addedBy;                 // Keeps track of which employee has added the guest
 
 
 
