@@ -42,16 +42,18 @@ public class GuestViewFragment extends Fragment {
         tv_partySize = (TextView) v.findViewById(R.id.fragment_guest_view_tv_partysize);
 
 
-
-            System.out.println("Name: " + getArguments().get("name").toString() );
-//            System.out.println("Added By: " + getArguments().get("added").toString() );
-//            System.out.println("phone: " + getArguments().get("phone").toString() );
-
             tv_name.setText(getArguments().get("name").toString());
             tv_partySize.setText(getArguments().get("party_size").toString());
-//            tv_addedBy.setText(getArguments().get("added").toString());
-//            tv_phone.setText(getArguments().get("phone").toString());
-//            tv_email.setText(getArguments().get("email").toString());
+            tv_addedBy.setText(getArguments().get("added").toString());
+
+
+            // Check if optional arguments are included, if so, then grab them
+            if(getArguments().get("phone").toString() != null) {
+                tv_phone.setText(getArguments().get("phone").toString());
+            }
+            if(getArguments().get("phone").toString() != null) {
+                tv_email.setText(getArguments().get("email").toString());
+            }
 
         return super.onCreateView(inflater, container, savedInstanceState);
 

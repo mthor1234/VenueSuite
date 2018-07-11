@@ -111,11 +111,19 @@ public class GuestListFragmentView extends Fragment implements MyContract{
                 // If I want to launch another fragment. Probably use this idea for the Floating Action Bar
                 Fragment fragment = (Fragment)GuestViewFragment.newInstance();
                 Bundle args = new Bundle();
+
                 args.putString("name", guest.getName());
-//                args.putString("added", guest.getAddedBy().getName());
-//                args.putString("phone", guest.getPhone());
-//                args.putString("email", guest.getEmail());
+                args.putString("added", guest.getAddedBy().getName());
                 args.putString("party_size", Integer.toString(guest.getPartySize()));
+
+                if(guest.getEmail() != null){
+                    args.putString("email", guest.getEmail());
+                }
+
+                if(guest.getPhone() != null){
+                    args.putString("phone", guest.getPhone());
+                }
+
 
                 fragment.setArguments(args);
 

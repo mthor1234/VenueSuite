@@ -28,6 +28,11 @@ public class User {
         this.jobRole = jobRole;
     }
 
+    public User(String name, String jobRole) {
+        this.name = name;
+        this.jobRole = jobRole;
+    }
+
     public String getName() {
         return name;
     }
