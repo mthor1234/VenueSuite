@@ -20,7 +20,8 @@ import java.util.ArrayList;
  * Created by mitchthornton on 7/7/18.
  */
 
-public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements View.OnClickListener {
+public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements
+        View.OnClickListener {
 
     private ArrayList<Guest> dataSet;
     Context mContext;
@@ -35,7 +36,6 @@ public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements View.
         super(context, R.layout.guestlist_row_item, data);
         this.dataSet = data;
         this.mContext = context;
-
     }
 
 
@@ -47,14 +47,17 @@ public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements View.
 
         Guest guest = (Guest) object;
 
-        Snackbar.make(v, guest.getFirstName(), Snackbar.LENGTH_SHORT).show();
+        final Snackbar snack = Snackbar.make(v, guest.getFirstName(), Snackbar.LENGTH_SHORT);
+        snack.show();
+
+        System.out.println("Clicking inside of the custom adapter");
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // Getting guest data
-        Guest guest = getItem(position);
+        Guest guest = (Guest) getItem(position);
 
         // Check if an existing view is being reused, otherwise recycle it
 
@@ -64,6 +67,7 @@ public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements View.
 
         if(convertView == null){
             viewHolder = new ViewHolder();
+
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.guestlist_row_item, parent, false);
 
@@ -72,21 +76,24 @@ public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements View.
             viewHolder.tv_guests = (TextView) convertView.findViewById(R.id.guestlist_row_item_tv_number);
             viewHolder.cb_added = (CheckBox) convertView.findViewById(R.id.guestlist_row_item_cb);
 
+            convertView.setTag(viewHolder);
             result = convertView;
 
-            Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ?
-            R.anim.up_from_bottom : R.anim.down_from_top);
-            result.startAnimation(animation);
-            lastPosition = position;
-
-            viewHolder.tv_Name.setText(guest.getName());
-            viewHolder.tv_addedBy.setText(guest.getAddedBy().getName());
-            viewHolder.tv_guests.setText(guest.getPartySize());
-
-            return convertView;
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+            result = convertView;
         }
-        return super.getView(position, convertView, parent);
+
+        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ?
+                R.anim.up_from_bottom : R.anim.down_from_top);
+        result.startAnimation(animation);
+        lastPosition = position;
+
+        viewHolder.tv_Name.setText(guest.getName());
+        viewHolder.tv_addedBy.setText(guest.getAddedBy().getName());
+        viewHolder.tv_guests.setText(Integer.toString(guest.getPartySize()));
+        viewHolder.cb_added.setChecked(guest.hasEntered());
+
+        return convertView;
     }
-
-
 }

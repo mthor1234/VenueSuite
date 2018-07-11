@@ -10,6 +10,7 @@ public class Guest {
 
     private String firstName, lastName, name, phoneNumber, email, phone;
     private int partySize;
+    private boolean hasEntered;
     private Date birthday;
     private User addedBy;
 
@@ -22,6 +23,7 @@ public class Guest {
         this.lastName = lastName;
         this.addedBy = addedBy;
         this.partySize = partySize;
+        this.hasEntered = false;
     }
 
     public Guest(String firstName, String lastName, String phoneNumber, String email, String phone, Date birthday, User addedBy, int partySize) {
@@ -33,6 +35,8 @@ public class Guest {
         this.birthday = birthday;
         this.addedBy = addedBy;
         this.partySize = partySize;
+        this.hasEntered = false;
+
     }
 
 
@@ -107,5 +111,13 @@ public class Guest {
 
     public void setPartySize(int partySize) {
         this.partySize = partySize;
+    }
+
+    public boolean hasEntered() {
+        return hasEntered;
+    }
+
+    public void setHasEntered(boolean hasEntered) {
+        this.hasEntered = hasEntered;
     }
 }

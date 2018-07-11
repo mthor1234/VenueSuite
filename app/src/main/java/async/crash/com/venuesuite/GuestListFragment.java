@@ -60,6 +60,10 @@ public class GuestListFragment extends Fragment implements MyContract {
 
 
 
+    public static Fragment newInstance(){
+        return new GuestListFragment();
+    }
+
     private String[] arraySpinner = new String[]{
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"
     };
@@ -94,9 +98,6 @@ public class GuestListFragment extends Fragment implements MyContract {
         // Write a message to the database
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("message");
-
-
-
 
         btn_datePicker.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -24,7 +24,7 @@ public class ContactsCustomAdapter extends ArrayAdapter<User> implements
         View.OnClickListener{
 
     private ArrayList<User> dataSet;
-    Context mContext;
+    private Context mContext;
     private int lastPosition = -1;
 
     // View lookup cache

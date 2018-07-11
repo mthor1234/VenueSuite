@@ -123,7 +123,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                 fragmentClass = CalendarFragment.class;
                 break;
                 case R.id.nav_fifth_fragment:
-                fragmentClass = GuestListFragment.class;
+                fragmentClass = GuestListFragmentView.class;
                 break;
                 case R.id.nav_sixth_fragment:
                 fragmentClass = ContactsFragment.class;
