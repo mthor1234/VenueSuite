@@ -14,6 +14,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by mitchthornton on 6/26/18.
@@ -71,6 +73,10 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         // Setup drawer view
         setupDrawerContent(nvDrawer);
+
+        TextView tv_Header = (TextView) nvDrawer.findViewById(R.id.nav_header_tv);
+
+//        TextView tv_Header = (TextView) findViewById(R.id.nav_header_tv);
     }
 
 

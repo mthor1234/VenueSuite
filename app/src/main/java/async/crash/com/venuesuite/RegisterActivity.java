@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 /**
  * Created by mitchthornton on 6/29/18.
@@ -102,6 +103,10 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(firstName + " " + lastName)
+                        .build();
             }
         });
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainFragment extends Fragment {
 
-    TextView textView;
+    TextView textView, tv_Header;
     Button btnLogout;
     FirebaseAuth firebaseAuth;
+
     private FirebaseAuth.AuthStateListener  authStateListener;
 
     public static Fragment newInstance(){
@@ -35,15 +37,22 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        System.out.println("In MainFragment!");
-
         View v = inflater.inflate(R.layout.fragment_main, container, true);
+
+        final LayoutInflater tempInflater =  getLayoutInflater();
+
+        View temp = inflater.inflate(R.layout.fragment_activity, null);
+
 
         textView = (TextView) v.findViewById(R.id.fragment_main_tv_start);
         btnLogout = (Button) v.findViewById(R.id.fragment_main_btn_logout);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+//        NavigationView nvDrawer = (NavigationView) temp.findViewById(R.id.nView);
+//        tv_Header = (TextView) nvDrawer.findViewById(R.id.nav_header_tv);
+
+
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -55,9 +64,19 @@ public class MainFragment extends Fragment {
                 }
                 else{
                     textView.setText("Hi " + user.getEmail());
+
+//                    tv_Header.setText(user.getEmail());
+
+
+                    
+//                    String users_name = getResources().getString(R.string.users_name, user.getDisplayName());
+
                 }
             }
         };
+
+
+
 
 //        final FirebaseUser user = firebaseAuth.getCurrentUser();
 //        textView.setText("Hi " + user.getEmail());

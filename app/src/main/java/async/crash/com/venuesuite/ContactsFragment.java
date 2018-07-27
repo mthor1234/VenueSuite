@@ -54,29 +54,32 @@ public class ContactsFragment extends Fragment {
 
                 User user = mUsers.get(position);
 
-                if (user.getPhoneNumber() != null && user.getPhoneNumber().length() > 6) {
-                    final Snackbar snackbar = Snackbar.make(view, user.getName(), Snackbar.LENGTH_INDEFINITE);
-                    snackbar.setAction("Text or call", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            snackbar.dismiss();
+//                if (user.getPhoneNumber() != null && user.getPhoneNumber().length() > 6) {
+//                    final Snackbar snackbar = Snackbar.make(view, user.getName(), Snackbar.LENGTH_INDEFINITE);
+//                    snackbar.setAction("Text or call", new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            snackbar.dismiss();
+//
+//                            Intent intent = new Intent(Intent.ACTION_MAIN);
+//                            intent.addCategory(Intent.CATEGORY_APP_MESSAGING);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    snackbar.show();
+//                } else {
+//                    final Snackbar snackbar = Snackbar.make(view, "No phone number registered", Snackbar.LENGTH_INDEFINITE);
+//                    snackbar.setAction("Dismiss", new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            snackbar.dismiss();
+//                        }
+//                    });
+//                    snackbar.show();
+//                }
 
-                            Intent intent = new Intent(Intent.ACTION_MAIN);
-                            intent.addCategory(Intent.CATEGORY_APP_MESSAGING);
-                            startActivity(intent);
-                        }
-                    });
-                    snackbar.show();
-                } else {
-                    final Snackbar snackbar = Snackbar.make(view, "No phone number registered", Snackbar.LENGTH_INDEFINITE);
-                    snackbar.setAction("Dismiss", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            snackbar.dismiss();
-                        }
-                    });
-                    snackbar.show();
-                }
+                Fragment fragment = ChatFragment.newInstance();
+                getFragmentManager().beginTransaction().replace(R.id.flContent,fragment).commit();
 
             }
         });

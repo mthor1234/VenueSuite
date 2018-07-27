@@ -16,6 +16,8 @@
         android:layout_marginStart="25dp"
         android:text="John Doe" />
 
+
+
     <TextView
         android:id="@+id/guestlist_row_item_tv_addedby"
         android:layout_width="wrap_content"
@@ -24,6 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="75dp"
         android:text="Added by: MJ" />
+
 
     <TextView
         android:id="@+id/guestlist_row_item_tv_number"

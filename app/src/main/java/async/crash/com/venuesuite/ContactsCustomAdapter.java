@@ -20,6 +20,12 @@ import java.util.ArrayList;
  * Created by mitchthornton on 7/3/18.
  */
 
+/*TODO: ERROR java.lang.NullPointerException: Attempt to read from field 'android.widget.TextView async.crash.com.venuesuite.ContactsCustomAdapter$ViewHolder.tv_contactName' on a null object reference
+        at async.crash.com.venuesuite.ContactsCustomAdapter.getView(ContactsCustomAdapter.java:114)
+        This Occurred after attaching the contacts fragment, playing around with the fragment, then navigating away, then reattaching the fragment
+        Fragment does not appear when clicked twice. Probably related to attachToRoot or navigating away*/
+
+
 public class ContactsCustomAdapter extends ArrayAdapter<User> implements
         View.OnClickListener{
 
@@ -46,31 +52,32 @@ public class ContactsCustomAdapter extends ArrayAdapter<User> implements
         int position = (Integer)v.getTag();
         Object object = getItem(position);
         User user = (User) object;
+//
+//        if(user.getPhoneNumber().length() > 6) {
+//
+//            final Snackbar snackbar = Snackbar.make(v, user.getName(), Snackbar.LENGTH_LONG);
+//                snackbar.setAction("Text or call",  new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            snackbar.dismiss();
+//
+//                            Intent intent = new Intent(Intent.ACTION_MAIN);
+//                            intent.addCategory(Intent.CATEGORY_APP_MESSAGING);
+//                            mContext.startActivity(intent);
+//                        }
+//                    });
+//                                snackbar.show();
+//        }
+//        else{
+//            final Snackbar snackbar = Snackbar.make(v, "No phone number registered", Snackbar.LENGTH_LONG);
+//                snackbar.setAction("Dismiss", new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            snackbar.dismiss();
+//                        }
+//                    });
+//        }
 
-        if(user.getPhoneNumber().length() > 6) {
-
-            final Snackbar snackbar = Snackbar.make(v, user.getName(), Snackbar.LENGTH_LONG);
-                snackbar.setAction("Text or call",  new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            snackbar.dismiss();
-
-                            Intent intent = new Intent(Intent.ACTION_MAIN);
-                            intent.addCategory(Intent.CATEGORY_APP_MESSAGING);
-                            mContext.startActivity(intent);
-                        }
-                    });
-                                snackbar.show();
-        }
-        else{
-            final Snackbar snackbar = Snackbar.make(v, "No phone number registered", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Dismiss", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            snackbar.dismiss();
-                        }
-                    });
-        }
     }
 
     // Method to trigger the text message window to the selected contact from the contact list
@@ -101,19 +108,20 @@ public class ContactsCustomAdapter extends ArrayAdapter<User> implements
 
             result = convertView;
 
-            Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition)
-            ? R.anim.up_from_bottom : R.anim.down_from_top);
-            result.startAnimation(animation);
-            lastPosition = position;
-
-            viewHolder.tv_contactName.setText(user.getName());
-            viewHolder.tv_jobRole.setText(user.getJobRole());
-//            viewHolder.info.setOnClickListener(this);
-//            viewHolder.info.setTag(position);
-            // Return the completed view to render on screen
-            return convertView;
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+            result = convertView;
 
         }
-        return super.getView(position, convertView, parent);
+        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition)
+                ? R.anim.up_from_bottom : R.anim.down_from_top);
+        result.startAnimation(animation);
+        lastPosition = position;
+
+        viewHolder.tv_contactName.setText(user.getName());
+        viewHolder.tv_jobRole.setText(user.getJobRole());
+
+        return convertView;
+
     }
 }

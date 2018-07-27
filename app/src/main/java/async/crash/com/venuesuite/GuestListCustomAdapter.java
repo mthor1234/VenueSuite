@@ -90,7 +90,7 @@ public class GuestListCustomAdapter extends ArrayAdapter<Guest> implements
         lastPosition = position;
 
         viewHolder.tv_Name.setText(guest.getName());
-        viewHolder.tv_addedBy.setText(guest.getAddedBy().getName());
+        viewHolder.tv_addedBy.setText("Added By: " + guest.getAddedBy().getName());
         viewHolder.tv_guests.setText(Integer.toString(guest.getPartySize()));
         viewHolder.cb_added.setChecked(guest.hasEntered());
 

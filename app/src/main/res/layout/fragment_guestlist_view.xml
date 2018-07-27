@@ -5,17 +5,6 @@
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground">
 
-
-    <!--<android.support.v7.widget.SearchView-->
-        <!--android:id="@+id/fragment_guestlist_view_searchview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="15dp"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:layout_marginTop="35dp"-->
-        <!--android:background="@color/colorAccent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
     <EditText
         android:id="@+id/fragment_guestlist_view_et_filter"
         android:layout_width="match_parent"
@@ -23,6 +12,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="35dp"
+        android:hint="@string/search_guests"
         app:layout_constraintTop_toTopOf="parent" />
 
 

@@ -12,6 +12,8 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="new_user">New User?</string>
+    <string name="users_name">%s</string>
+
     <!--<string name="default_web_client_id">New User?</string>-->
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
@@ -33,10 +35,12 @@
     <string name="females"># of Females</string>
 
 
+    <string name="search_guests">Search Guests</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="venue_suite">Venue Suite</string>
     <string name="description">Hiding Password Example</string>
+    <string name="default_notification_channel_id">notification channel</string>
 
 
 </resources>
