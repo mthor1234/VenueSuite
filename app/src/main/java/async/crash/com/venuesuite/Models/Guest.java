@@ -1,4 +1,4 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Models;
 
 import java.util.Date;
 

@@ -1,9 +1,11 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Models;
 
 import java.util.Date;
 
 /**
  * Created by mitchthornton on 7/24/18.
+ *
+ * Used to hold all chat messaging information between users.
  */
 
 public class ChatMessage {

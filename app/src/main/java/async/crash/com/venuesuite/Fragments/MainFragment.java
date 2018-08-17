@@ -1,4 +1,4 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import async.crash.com.venuesuite.Activities.LoginActivity;
+import async.crash.com.venuesuite.R;
 
 /**
  * Created by mitchthornton on 6/27/18.
@@ -37,7 +37,7 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, true);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         final LayoutInflater tempInflater =  getLayoutInflater();
 
@@ -46,41 +46,6 @@ public class MainFragment extends Fragment {
 
         textView = (TextView) v.findViewById(R.id.fragment_main_tv_start);
         btnLogout = (Button) v.findViewById(R.id.fragment_main_btn_logout);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-//        NavigationView nvDrawer = (NavigationView) temp.findViewById(R.id.nView);
-//        tv_Header = (TextView) nvDrawer.findViewById(R.id.nav_header_tv);
-
-
-
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user == null){
-                    startActivity(new Intent(getActivity().getApplicationContext(), LoginActivity.class));
-                    getActivity().finish();
-                }
-                else{
-                    textView.setText("Hi " + user.getEmail());
-
-//                    tv_Header.setText(user.getEmail());
-
-
-                    
-//                    String users_name = getResources().getString(R.string.users_name, user.getDisplayName());
-
-                }
-            }
-        };
-
-
-
-
-//        final FirebaseUser user = firebaseAuth.getCurrentUser();
-//        textView.setText("Hi " + user.getEmail());
-
 
 
         //TODO: Use this bit of code for an option to delete a user on an admin page
@@ -127,14 +92,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if(authStateListener != null){
-            firebaseAuth.removeAuthStateListener(authStateListener);
-        }
     }
 }

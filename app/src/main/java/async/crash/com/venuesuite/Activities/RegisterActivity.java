@@ -1,4 +1,4 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+
+import async.crash.com.venuesuite.R;
 
 /**
  * Created by mitchthornton on 6/29/18.
@@ -58,8 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = et_email.getText().toString();
                 String password = et_password.getText().toString();
-                String firstName = et_firstName.getText().toString();
-                String lastName = et_lastName.getText().toString();
+                final String firstName = et_firstName.getText().toString();
+                final String lastName = et_lastName.getText().toString();
                 String phone = et_phoneNumber.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
@@ -94,6 +97,14 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                            UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(firstName + " " + lastName)
+                                    .build();
+
+                            user.updateProfile(userProfileChangeRequest);
+
                             //TODO: May need to handle this using the fragment manager
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
@@ -104,9 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
-                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(firstName + " " + lastName)
-                        .build();
+
             }
         });
 

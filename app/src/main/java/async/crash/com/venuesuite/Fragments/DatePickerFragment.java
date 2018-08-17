@@ -1,15 +1,15 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
+
+import async.crash.com.venuesuite.Interfaces.MyContract;
 
 /**
  * Created by mitchthornton on 7/5/18.
@@ -98,5 +98,21 @@ public class DatePickerFragment extends DialogFragment
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public static int getRequestCode() {
+        return REQUEST_CODE;
+    }
+
+    public static void setRequestCode(int requestCode) {
+        REQUEST_CODE = requestCode;
+    }
+
+    public static String getEditTextBundleKey() {
+        return EDIT_TEXT_BUNDLE_KEY;
+    }
+
+    public static void setEditTextBundleKey(String editTextBundleKey) {
+        EDIT_TEXT_BUNDLE_KEY = editTextBundleKey;
     }
 }

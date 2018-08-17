@@ -1,7 +1,6 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Models;
 
 import android.content.Context;
-import android.support.annotation.AnimatorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -15,6 +14,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import async.crash.com.venuesuite.Models.Guest;
+import async.crash.com.venuesuite.R;
 
 /**
  * Created by mitchthornton on 7/7/18.

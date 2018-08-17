@@ -1,4 +1,4 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Models;
 
 import android.media.Image;
 import android.widget.ImageView;

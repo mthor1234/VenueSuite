@@ -1,18 +1,14 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Activities;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,12 +27,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import async.crash.com.venuesuite.Fragments.DatePickerFragment;
+import async.crash.com.venuesuite.Fragments.GuestViewFragment;
+import async.crash.com.venuesuite.Interfaces.MyContract;
+import async.crash.com.venuesuite.Models.Guest;
+import async.crash.com.venuesuite.Models.GuestListCustomAdapter;
+import async.crash.com.venuesuite.Models.User;
+import async.crash.com.venuesuite.R;
+
 /**
  * Created by mitchthornton on 7/7/18.
  */
 
 
-public class GuestListFragmentView extends Fragment implements MyContract{
+public class GuestListFragmentView extends Fragment implements MyContract {
 
     ArrayList<Guest> mGuests;
 
@@ -109,7 +113,7 @@ public class GuestListFragmentView extends Fragment implements MyContract{
 
 
                 // If I want to launch another fragment. Probably use this idea for the Floating Action Bar
-                Fragment fragment = (Fragment)GuestViewFragment.newInstance();
+                Fragment fragment = (Fragment) GuestViewFragment.newInstance();
                 Bundle args = new Bundle();
 
                 args.putString("name", guest.getName());
@@ -195,9 +199,9 @@ public class GuestListFragmentView extends Fragment implements MyContract{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == DatePickerFragment.REQUEST_CODE){
+        if(resultCode == DatePickerFragment.getRequestCode()){
             String editTextString = data.getStringExtra(
-                    DatePickerFragment.EDIT_TEXT_BUNDLE_KEY);
+                    DatePickerFragment.getEditTextBundleKey());
         }
     }
 

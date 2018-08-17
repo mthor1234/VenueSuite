@@ -1,6 +1,7 @@
-package async.crash.com.venuesuite;
+package async.crash.com.venuesuite.Activities;
 
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import async.crash.com.venuesuite.Fragments.CalendarFragment;
+import async.crash.com.venuesuite.Fragments.ChatFragment;
+import async.crash.com.venuesuite.Fragments.ContactsFragment;
+import async.crash.com.venuesuite.Fragments.MainFragment;
+import async.crash.com.venuesuite.Fragments.ScheduleFragment;
+import async.crash.com.venuesuite.Fragments.SecurityFragment;
+import async.crash.com.venuesuite.R;
+
 /**
  * Created by mitchthornton on 6/26/18.
  */
@@ -24,15 +36,20 @@ import android.widget.TextView;
 //TODO: Fragments are overlaying the activity but the user can still select buttons from the SingleFragmentActivity
     // Probably has something to do with setting attachtoroot=true in the FM
 
-public abstract class SingleFragmentActivity extends AppCompatActivity {
+public abstract class SingleFragmentActivity extends AppCompatActivity
+                    implements ContactsFragment.ChatInformation{
 
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
+    private String mCurrentFragment = "Home";
 
     // Make sure to be using android.support.v7.app.ActionBarDrawerToggle version.
     // The android.support.v4.app.ActionBarDrawerToggle has been deprecated.
     private ActionBarDrawerToggle drawerToggle;
+
+    FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener  authStateListener;
 
     protected abstract Fragment createFragment();
 
@@ -54,7 +71,38 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerToggle = setupDrawerToggle();
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nView);
+        View headerView = navigationView.getHeaderView(0);
+        final TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_tv);
+
+
+        drawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
+
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(mCurrentFragment);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle("Menu");
+//        session = new SessionManager(getApplicationContext());
+//        user = session.getUserDetails();
+//        profilepic.setImageBitmap(StringToBitMap(user.get(SessionManager.KEY_PROFILEPIC)));
+//        name.setText(user.get(SessionManager.KEY_NAME));
+//        lastsynced.setText(lastsynced());
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+
+        };
+
 
         // Tie DrawerLayout events to the ActionBarToggle
         mDrawer.addDrawerListener(drawerToggle);
@@ -68,6 +116,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             fragment = createFragment();
             fm.beginTransaction()
                     .add(R.id.flContent, fragment)
+                    .addToBackStack(null)
                     .commit();
         }
 
@@ -76,7 +125,24 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         TextView tv_Header = (TextView) nvDrawer.findViewById(R.id.nav_header_tv);
 
-//        TextView tv_Header = (TextView) findViewById(R.id.nav_header_tv);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user == null){
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }
+                else{
+                    // Set navHeaderUsername as the user's display name saved in the firebase auth database
+                    navUsername.setText(user.getDisplayName());
+
+                }
+            }
+        };
+
+
     }
 
 
@@ -103,11 +169,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         );
     }
 
-    private ActionBarDrawerToggle setupDrawerToggle() {
-        // NOTE: Make sure you pass in a valid toolbar reference.  ActionBarDrawToggle() does not require it
-        // and will not render the hamburger icon without it.
-        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
-    }
 
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on the nav item clicked
@@ -117,25 +178,31 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         switch (menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = MainFragment.class;
+                mCurrentFragment = "Home";
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = SecurityFragment.class;
-
+                mCurrentFragment = "Security";
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = ScheduleFragment.class;
+                mCurrentFragment = "Schedule";
                 break;
             case R.id.nav_fourth_fragment:
                 fragmentClass = CalendarFragment.class;
+                mCurrentFragment = "Calendar";
                 break;
                 case R.id.nav_fifth_fragment:
                 fragmentClass = GuestListFragmentView.class;
-                break;
+                    mCurrentFragment = "Guestlist";
+                    break;
                 case R.id.nav_sixth_fragment:
                 fragmentClass = ContactsFragment.class;
-                break;
+                    mCurrentFragment = "Contacts";
+                    break;
             default:
                 fragmentClass = MainFragment.class;
+                mCurrentFragment = "Home";
         }
 
         try {
@@ -146,7 +213,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         // Insert the fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
@@ -161,6 +228,22 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     // NOTE 2: Make sure you impletement the correct onPostCreate() method
     // There are 2 signatures and only 'onPostCreate(Bundle savedState) ' shows the hamburger icon
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(authStateListener != null){
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
+    }
+
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -174,5 +257,14 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+    // Interface
+    // Allows clicking on a "contact" from the "ContactsFragment" to start a chat and launch the "ChatFragment"
+    @Override
+    public void startChat(String db_id, String receivingUser) {
+        Fragment fragment = ChatFragment.newInstance(db_id, receivingUser);
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent,fragment).addToBackStack(null).commit();
     }
 }
